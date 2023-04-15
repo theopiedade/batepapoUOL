@@ -19,44 +19,47 @@
   </head>
 
   <body>
-  <div class="top">
-    <div class="container_logo_and_icon">
-      <img src="img/logo.svg"/>
-      <img src="img/people.svg"/>
-    </div>
-  </div>
-  <div class="top_and_chat_divisor"></div>
-  <div class="container_door">
-    <div class="action">
-      <h1>(09:21:45)</h1>
-      <p>João </p> entra na sala...
-    </div>
-  </div>
-  <div class="container_msg">
-    <div class="action">
-      <h1>(09:22:28)</h1>
-      <p>João </p> para <p>todos:</p> Bom dia!
-    </div>
-  </div>
-  <div class="container_direct">
-    <div class="action">
-      <h1>(09:22:48)</h1> <p>João</p> reservadamente para <p>Maria:</p> Oi gatinha quer teclar? 
-    </div>
-  </div>
-  <div class="container_door">
-    <div class="action">
-      <h1>(09:22:58)</h1>
-      <p>Maria</p> sai da sala...
-    </div>
-  </div>
   
-  <div class="container_bottom">
-    <div>
-      <textarea rows="3" cols="30" placeholder="Escreva aqui"></textarea>
-    </div>
-    <div>
-      <ion-icon class="send_icon" name="paper-plane-outline"></ion-icon>
-    </div>
+  <div class="chat_open">
+      <div class="top">
+        <div class="container_logo_and_icon">
+          <img src="img/logo.svg"/>
+          <img src="img/people.svg"/>
+        </div>
+      </div>
+      <div class="top_and_chat_divisor"></div>
+      <div class="container_door">
+        <div class="action">
+          <h1>(09:21:45)</h1>
+          <p>João </p> entra na sala...
+        </div>
+      </div>
+      <div class="container_msg">
+        <div class="action">
+          <h1>(09:22:28)</h1>
+          <p>João </p> para <p>todos:</p> Bom dia!
+        </div>
+      </div>
+      <div class="container_direct">
+        <div class="action">
+          <h1>(09:22:48)</h1> <p>João</p> reservadamente para <p>Maria:</p> Oi gatinha quer teclar? 
+        </div>
+      </div>
+      <div class="container_door">
+        <div class="action">
+          <h1>(09:22:58)</h1>
+          <p>Maria</p> sai da sala...
+        </div>
+      </div>
+      
+      <div class="container_bottom">
+        <div>
+          <textarea rows="3" cols="30" placeholder="Escreva aqui"></textarea>
+        </div>
+        <div>
+          <ion-icon class="send_icon" name="paper-plane-outline"></ion-icon>
+        </div>
+      </div>
   </div>
 
   <div class="show_users">
@@ -73,7 +76,14 @@
       </div>
    </div>
 
-  <! - Java Scripts ->
+   <div class="chat_start">
+    <img src="img/logo.svg"/>
+    <input class="chat_start_input" type="text" placeholder="Digite seu nome"> </input>
+    <input class="chat_start_button" type="button" value="Entrar"></input>
+
+   </div>
+
+  <! - JavaScripts ->
   <script type="text/javascript" src="scripts.js"></script>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   </body>
