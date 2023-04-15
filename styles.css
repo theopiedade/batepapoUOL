@@ -107,3 +107,54 @@ textarea {
     width: 26px;
     height: 26px;
 }
+
+.show_users {
+    background: #FFFFFF;
+    position:fixed;
+    top: 0;
+    left: 116;
+    right: 0;
+    width: 259px;
+    height: 100%;
+    font-size: 16px;
+}
+
+.show_users_titles {
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+.show_users_list {
+    margin-left: 18px;
+    margin-right: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.show_users_list ion-icon {
+    width: 24px;
+    height: 17px;
+}
+
+.unchecked {
+    display: none;
+}
+
+.checked {
+    margin-inline-end: auto;
+    vertical-align: middle;
+    width: 9px;
+    height: 7px;
+    color: green;
+}
