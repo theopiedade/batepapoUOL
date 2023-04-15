@@ -1,0 +1,109 @@
+body {
+    width: 375px;
+    font-family: 'Roboto';
+    font-style: normal;
+    line-height: 16px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #F3F3F3
+}
+
+.top {
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    background: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 6px;
+}
+
+.container_logo_and_icon {
+    width: 100%;
+    margin-top: 16px;
+    margin-left: 22px;
+    margin-bottom: 11px;
+    margin-right: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: center;
+}
+
+.top_and_chat_divisor {
+    background-color: #E5E5E5;
+    height: 25px;
+}
+
+h1 {
+    color: #AAAAAA;
+    font-weight: 300;
+    font-size: 13px;
+    margin-right: 3px;
+}
+
+p {
+    font-weight: 400;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.container_door {
+    background: #DCDCDC;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.container_msg {
+    background: #FFFFFF;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.container_direct {
+    background: #FFDEDE;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.action {
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 9px;
+    margin-right: 9px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container_bottom {
+    position:absolute;
+    width: 375px;
+    left: 0px;
+    bottom: 0px;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+textarea {
+    overflow: hidden;
+    outline:none;
+    resize:none;
+    border-width: 0px;
+}
+
+.send_icon {
+    width: 26px;
+    height: 26px;
+}
