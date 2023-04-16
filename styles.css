@@ -50,7 +50,7 @@ p {
     margin-left: 3px;
 }
 
-.container_door {
+.container_status {
     background: #DCDCDC;
     border-radius: 2px;
     display: flex;
@@ -64,7 +64,7 @@ p {
     align-items: center;
 }
 
-.container_direct {
+.container_private_msg {
     background: #FFDEDE;
     border-radius: 2px;
     display: flex;
@@ -84,9 +84,8 @@ p {
 }
 
 .container_bottom {
-    position:absolute;
+    position:fixed;
     width: 375px;
-    left: 0px;
     bottom: 0px;
     height: 80px;
     background: #FFFFFF;
@@ -109,11 +108,9 @@ textarea {
 }
 
 .show_users {
-    display: none;
     background: #FFFFFF;
     position:fixed;
     top: 0;
-    left: 116;
     right: 0;
     width: 259px;
     height: 100%;
@@ -168,8 +165,7 @@ textarea {
     height: 667px;
     position: fixed;
     top: 0;
-    left: 116;
-    right: 0;
+    left: 0;
     background:#FFFFFF;
 }
 
@@ -181,7 +177,7 @@ textarea {
     background-color: #FFFFFF;
 }
 
-.chat_start_input {
+.chat_nickname_input {
     margin-top: 94px;
     width: 261px;
     height: 54px;
@@ -204,4 +200,12 @@ textarea {
     background: #E7E7E7;
     border-radius: 9px;
     border-color: #E7E7E7;
+}
+
+.chat_open {
+    position: fixed;
+    width: 375px;
+    height: 667px;
+    top: 0;
+    left: 450px;
 }
