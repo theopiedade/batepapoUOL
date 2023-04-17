@@ -1,10 +1,14 @@
 axios.defaults.headers.common['Authorization'] = '4w9C68vlTtbdtXrsnZR849FV';
 var myIntervalStatus;
 var myIntervalGetMessages;
+var nickname;
+
 
 function join_chat () {
     console.log("Button enter passed Nickname to javascript");
-    let nickname = document.querySelector('.chat_nickname_input').value;
+    nickname = document.querySelector('.chat_nickname_input').value;
+    document.querySelector('.chat_nickname_input').value = '';
+    console.log("Nickname choice: "+nickname);
     const data = {
         name: nickname
     };
@@ -24,16 +28,9 @@ function nick_check (answer) {
 } 
 
 function chat_start() {
-  console("Starting chat...");
-  myIntervalStatus = 0;
-  myIntervalGetMessages = 0;
+  console.log("Starting chat...");
   let element = document.querySelector('.chat_status_and_messages');
-  element.innerHTML = '';
   get_messages();
-  myIntervalStatus = setInterval(keep_status_ok,5000);
-  setInterval(clearInterval(myIntervalStatus),30000);
-  myIntervalGetMessages = setInterval(get_messages,1000);
-  setInterval(clearInterval(myIntervalGetMessages),30000);
 }
 
 
@@ -55,60 +52,91 @@ function get_messages () {
 
 function server_data_process (answer) {
     const statusCode = answer.status;
-	console.log(statusCode);
-    console.log(answer.data.length);
-    console.log(answer.data[0]);
     for (let i=0;i<=answer.data.length;i++) { 
-        message_data_process(answer.data[i]); }
-
+        message_data_process(answer.data[i]); 
+    }
 }
 
 
 function message_data_process (item) {
-    if (item.type === 'status') {
-        let element = document.querySelector('.chat_status_and_messages');
-        element.innerHTML += `
-            <div class="container_status">
+          console.log(item.type);
+          if (item.type == 'status') {
+            let element = document.querySelector('.chat_status_and_messages');
+            element.innerHTML += `
+                <div class="container_status">
+                    <div class="action">
+                    <h1>(${item.time})</h1>
+                    <p>${item.from}</p> ${item.text}
+                    </div>
+                </div>
+            `;
+            }
+        if (item.type == 'message') {
+            let element = document.querySelector('.chat_status_and_messages');
+            element.innerHTML += `
+            <div class="container_msg">
                 <div class="action">
                 <h1>(${item.time})</h1>
-                <p>${item.from}</p> ${item.text}
+                <p>${item.from}</p> para <p>${item.to}</p> ${item.text}
                 </div>
             </div>
-        `;
-        }
-    if (item.type === 'message') {
-        let element = document.querySelector('.chat_status_and_messages');
-        element.innerHTML += `
-        <div class="container_msg">
-            <div class="action">
-            <h1>${item.time}</h1>
-            <p>${item.from}</p> para <p>${item.to}</p> ${item.text}
-            </div>
-        </div>
-        `;
-        }
-    if (item.type === 'private_message') {
-        let element = document.querySelector('.chat_status_and_messages');
-        element.innerHTML += `
-        <div class="container_private_msg">
-            <div class="action">
-            <h1>${item.time}</h1>
-            <p>${item.from}</p> para <p>${item.to}</p> ${item.text}
-            </div>
-        </div>
             `;
-        }
+            }
+        if (item.type == 'private_message') {
+            let element = document.querySelector('.chat_status_and_messages');
+            element.innerHTML += `
+            <div class="container_private_msg">
+                <div class="action">
+                <h1>(${item.time})</h1>
+                <p>${item.from}</p> para <p>${item.to}</p> ${item.text}
+                </div>
+            </div>
+                `;
+            }
+            var chatHistory = document.querySelector('.chat_status_and_messages');
+            chatHistory.scrollTop = chatHistory.scrollHeight;
 }
 
-function keep_status_ok (data) {
+function keep_status_ok () {
+    data = {
+        name: nickname
+    };
     const query = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', data);
 }
 
-function send_messages (message) {
-    const query = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', data);
+function send_message () {
+    console.log("Send message function actioned");
+    let element = document.querySelector('.myText');
+    let textMsg = element.value;
+    element.innerHTML = "";
+    console.log(textMsg);
+    let toWho = "Todos";
+    let typeOfMsg = "message";
+    element.innerHTML = '';
+    
+    const data = {
+        from: nickname,
+        to: toWho,
+        text: textMsg,
+        type: typeOfMsg // ou "private_message" para o bônus
+    };
+    console.log(data);
+    if (textMsg != null) {
+        keep_status_ok ();
+        const query = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', data);
+        query.then(get_messages);
+        query.catch(errorTreat('userGoes'));
+    }
 }
-
 function errorTreat(error) {
     console.log("Status code: " + error.response.status); // Ex: 404
     console.log("Error message: " + error.response.data); // Ex: Not Found
-  }
+    if (error == 'userGoes') window.location.reload();
+}
+
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+     var btn = document.querySelector("#submit");
+     btn.click();
+    }
+  });

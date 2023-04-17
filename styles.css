@@ -41,6 +41,12 @@ body {
 .chat_status_and_messages {
     overflow-y: scroll;
     height: 320px;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+}
+
+.chat_status_and_messages::-webkit-scrollbar {
+    display: none; 
 }
 
 h1 {
