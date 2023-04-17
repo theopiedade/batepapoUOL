@@ -2,6 +2,7 @@ axios.defaults.headers.common['Authorization'] = '4w9C68vlTtbdtXrsnZR849FV';
 var myIntervalStatus;
 var myIntervalGetMessages;
 var nickname;
+var errorActual;
 
 
 function join_chat () {
@@ -31,6 +32,8 @@ function chat_start() {
   console.log("Starting chat...");
   let element = document.querySelector('.chat_status_and_messages');
   get_messages();
+  setInterval(get_messages,3000);
+  setInterval(keep_status_ok, 5000);
 }
 
 
@@ -59,7 +62,6 @@ function server_data_process (answer) {
 
 
 function message_data_process (item) {
-          console.log(item.type);
           if (item.type == 'status') {
             let element = document.querySelector('.chat_status_and_messages');
             element.innerHTML += `
@@ -105,10 +107,10 @@ function keep_status_ok () {
 }
 
 function send_message () {
-    console.log("Send message function actioned");
+    //console.log("Send message function actioned");
     let element = document.querySelector('.myText');
     let textMsg = element.value;
-    element.innerHTML = "";
+    document.querySelector('.myText').value = '';
     console.log(textMsg);
     let toWho = "Todos";
     let typeOfMsg = "message";
@@ -125,18 +127,22 @@ function send_message () {
         keep_status_ok ();
         const query = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', data);
         query.then(get_messages);
-        query.catch(errorTreat('userGoes'));
+        query.catch(errorTreat);
     }
 }
 function errorTreat(error) {
     console.log("Status code: " + error.response.status); // Ex: 404
     console.log("Error message: " + error.response.data); // Ex: Not Found
-    if (error == 'userGoes') window.location.reload();
+    if (errorActual == 'userGoes') window.location.reload();
+    if (errorActual == 'messages') window.location.reload();
 }
 
-document.addEventListener("keypress", function(e) {
-    if(e.key === 'Enter') {
-     var btn = document.querySelector("#submit");
-     btn.click();
-    }
-  });
+document.addEventListener('keydown', function (event) {
+            if (event.keyCode !== 13) return;
+            let text_check = document.querySelector('.myText').value;
+            console.log(text_check);
+            if(text_check != null) {
+                console.log("entercheck passed");
+                send_message();
+            }
+});
