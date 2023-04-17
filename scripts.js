@@ -28,6 +28,17 @@ function nick_check (answer) {
     }
 } 
 
+function errorTreat(error) {
+    if (answer.status === 400) {
+        alert("Nome já em uso, escolha outro.");
+     }
+     if (answer.status === 200) {
+       chat_start();
+     }
+    console.log("Status code: " + error.response.status); // Ex: 404
+    console.log("Error message: " + error.response.data); // Ex: Not Found
+}
+
 function chat_start() {
   console.log("Starting chat...");
   let element = document.querySelector('.chat_status_and_messages');
@@ -130,12 +141,7 @@ function send_message () {
         query.catch(errorTreat);
     }
 }
-function errorTreat(error) {
-    console.log("Status code: " + error.response.status); // Ex: 404
-    console.log("Error message: " + error.response.data); // Ex: Not Found
-    if (errorActual == 'userGoes') window.location.reload();
-    if (errorActual == 'messages') window.location.reload();
-}
+
 
 document.addEventListener('keydown', function (event) {
             if (event.keyCode !== 13) return;
